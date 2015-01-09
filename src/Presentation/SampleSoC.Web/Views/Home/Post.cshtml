@@ -1,0 +1,23 @@
+﻿@using SampleSoC.Web.Infrastructure.Extensions
+@model SampleSoC.Web.Models.Home.BlogPostModel
+
+@{
+    ViewBag.Title = Model.Name;
+}
+
+@section menuItems{
+    <li>@Html.ActionLink("Edit", "Edit", "Home", new { Model.Id }, null)</li>
+}
+
+<div class="row">
+    <div class="row">
+        <span class="BlogPostHeader">@Model.Name</span>
+    </div>
+    <div class="row">
+        <span>@Model.DateCreated.ToLocalTime().ToShortDateString()</span>
+    </div>
+    <div class="row">
+        @Html.Markdown(Model.Markdown)
+    </div>
+</div>
+

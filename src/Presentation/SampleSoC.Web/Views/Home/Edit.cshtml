@@ -1,0 +1,23 @@
+﻿@model SampleSoC.Web.Models.Home.BlogPostModel
+
+@{
+    ViewBag.Title = Model.Name;
+}
+
+@section scripts{
+    <script type="text/javascript">
+        EnableHighlighting.enable();
+    </script>
+}
+
+<div class="row">
+    <div class="col col-lg-12">
+        @using (Html.BeginForm("Edit", "Home", FormMethod.Post))
+        {
+            @Html.TextBoxFor(m => m.Name)
+            <textarea name="Markdown" id="Markdown" data-provide="markdown" data-iconlibrary="fa" autofocus rows="30">@Model.Markdown</textarea>
+            <hr />
+            <button type="submit" class="btn">Submit</button>
+        }
+    </div>
+</div>

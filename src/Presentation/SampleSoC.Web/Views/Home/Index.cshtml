@@ -1,0 +1,22 @@
+﻿@using SampleSoC.Web.Infrastructure.Extensions
+@model SampleSoC.Web.Models.Home.BlogsOverviewModel
+
+@{
+    ViewBag.Title = "Blog";
+}
+
+@foreach (var post in Model.Posts)
+{
+    <div class="row">
+        <div class="row">
+            @(Html.ActionLink(post.Name, "Post", new { post.Id }, new { @class = "BlogPostHeader" })) - <span>@post.DateCreated.ToLocalTime().ToShortDateString()</span>
+        </div>
+        <div class="row">
+            @Html.MarkdownExcerpt(post.MarkdownPreview, 500)
+            @if (!Model.Posts.Last().Equals(post))
+            {
+                <hr />
+            }
+        </div>
+    </div>
+}
