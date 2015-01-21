@@ -23,6 +23,10 @@
             
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BlogPostModel"/> class.
+        /// </summary>
+        /// <param name="blogPost">The blog post.</param>
         public BlogPostModel(BlogPost blogPost)
         {
             Id = blogPost.Id;

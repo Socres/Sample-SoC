@@ -14,8 +14,6 @@
         [Required]
         public virtual int BlogPostId { get; set; }
 
-        public virtual BlogPost BlogPost { get; set; }
-
         [Required]
         public DateTime DateCreated { get; set; }
 

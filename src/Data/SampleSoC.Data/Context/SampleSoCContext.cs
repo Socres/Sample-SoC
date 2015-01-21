@@ -19,7 +19,8 @@
         public SampleSoCContext()
         {
             Configuration.LazyLoadingEnabled = false;
-            Configuration.ProxyCreationEnabled = false;            
+            Configuration.ProxyCreationEnabled = false;
+            Database.SetInitializer(new NullDatabaseInitializer<SampleSoCContext>());
         }
 
         /// <summary>

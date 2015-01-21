@@ -21,12 +21,12 @@
         /// <param name="config"></param>
         public void SetupIoC(IAppBuilder app, HttpConfiguration config)
         {
-            IoC.Instance().Register<IUnitOfWork, UnitOfWork>().PerLifetimeScope();
-            IoC.Instance().Register<IBlogService, BlogService>().PerLifetimeScope();
+            IoC.Instance.Register<IUnitOfWork, UnitOfWork>().PerLifetimeScope();
+            IoC.Instance.Register<IBlogService, BlogService>().PerLifetimeScope();
 
-            IoC.Instance().RegisterWebApi(GetType().Assembly);
+            IoC.Instance.RegisterWebApi(GetType().Assembly);
 
-            IoC.Instance().Build();
+            IoC.Instance.Build();
 
             //DependencyResolver.SetResolver(new IoCDependencyResolver());
 

@@ -1,5 +1,6 @@
 ﻿namespace SampleSoC.Web.Controllers
 {
+    using System.Configuration;
     using System.Web.Mvc;
     using SampleSoC.Domain.Core.Interfaces;
     using SampleSoC.Web.Models.Home;
@@ -35,6 +36,7 @@
         /// <returns></returns>
         public ActionResult Post(int id)
         {
+            ViewBag.ServiceUrl = ConfigurationManager.AppSettings["ServiceUrl"];
             var blogPost = _blogService.GetPost(id);
             var model = new BlogPostModel(blogPost);
             return View(model);

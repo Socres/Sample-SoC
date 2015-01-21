@@ -34,22 +34,24 @@
         /// <param name="id">The entity id.</param>
         public TEntity GetById(int id)
         {
-            return GetById(id, string.Empty);
+            return GetById<object>(id, null);
         }
 
         /// <summary>
         /// Gets the entity by id.
         /// </summary>
+        /// <typeparam name="TProperty">The type of the property.</typeparam>
         /// <param name="id">The entity id.</param>
-        /// <param name="includeProperties">The include properties.</param>
-        public TEntity GetById(int id, string includeProperties)
+        /// <param name="includeProperty">The include property.</param>
+        /// <returns></returns>
+        public TEntity GetById<TProperty>(int id, Expression<Func<TEntity, TProperty>> includeProperty)
         {
-            return GetQuery(e => e.Id.Equals(id), includeProperties).SingleOrDefault();
+            return GetQuery(e => e.Id.Equals(id), includeProperty).SingleOrDefault();
         }
 
         public IEnumerable<TEntity> Fetch()
         {
-            return GetQuery(null, string.Empty).ToList();
+            return GetQuery(null).ToList();
         }
 
         /// <summary>
@@ -59,18 +61,19 @@
         /// <returns></returns>
         public IEnumerable<TEntity> Fetch(Expression<Func<TEntity, bool>> specification)
         {
-            return GetQuery(specification, string.Empty).ToList();
+            return GetQuery(specification).ToList();
         }
 
         /// <summary>
         /// Fetches the specified specification.
         /// </summary>
+        /// <typeparam name="TProperty">The type of the property.</typeparam>
         /// <param name="specification">The specification.</param>
-        /// <param name="includeProperties">The include properties.</param>
+        /// <param name="includeProperty">The include property.</param>
         /// <returns></returns>
-        public IEnumerable<TEntity> Fetch(Expression<Func<TEntity, bool>> specification, string includeProperties)
+        public IEnumerable<TEntity> Fetch<TProperty>(Expression<Func<TEntity, bool>> specification, Expression<Func<TEntity, TProperty>> includeProperty)
         {
-            return GetQuery(specification, includeProperties).ToList();
+            return GetQuery(specification, includeProperty).ToList();
         }
 
         /// <summary>
@@ -79,11 +82,26 @@
         /// <typeparam name="TOrderKey">The type of the order key.</typeparam>
         /// <param name="orderByExpression">The order by expression.</param>
         /// <param name="specification">The specification.</param>
-        /// <param name="includeProperties">The include properties.</param>
         /// <returns></returns>
-        public IEnumerable<TEntity> Fetch<TOrderKey>(Expression<Func<TEntity, TOrderKey>> orderByExpression, Expression<Func<TEntity, bool>> specification, string includeProperties)
+        public IEnumerable<TEntity> Fetch<TOrderKey>(Expression<Func<TEntity, TOrderKey>> orderByExpression, Expression<Func<TEntity, bool>> specification)
         {
-            var query = GetQuery(specification, includeProperties);
+            var query = GetQuery(specification);
+
+            return query.OrderBy(orderByExpression).ToList();
+        }
+
+        /// <summary>
+        /// Fetches the specified order by expression.
+        /// </summary>
+        /// <typeparam name="TOrderKey">The type of the order key.</typeparam>
+        /// <typeparam name="TProperty">The type of the property.</typeparam>
+        /// <param name="orderByExpression">The order by expression.</param>
+        /// <param name="specification">The specification.</param>
+        /// <param name="includeProperty">The include property.</param>
+        /// <returns></returns>
+        public IEnumerable<TEntity> Fetch<TOrderKey, TProperty>(Expression<Func<TEntity, TOrderKey>> orderByExpression, Expression<Func<TEntity, bool>> specification, Expression<Func<TEntity, TProperty>> includeProperty)
+        {
+            var query = GetQuery(specification, includeProperty);
 
             return query.OrderBy(orderByExpression).ToList();
         }
@@ -101,7 +119,7 @@
         public IEnumerable<TEntity> FetchPaged<TOrderKey>(int pageIndex, int pageSize, Expression<Func<TEntity, bool>> specification, Expression<Func<TEntity, TOrderKey>> orderByExpression,
             out int totalRecordCount)
         {
-            var query = GetQuery(specification, string.Empty);
+            var query = GetQuery(specification);
 
             query = query.OrderBy(orderByExpression);
 
@@ -125,7 +143,7 @@
         /// <returns></returns>
         public int GetCount(Expression<Func<TEntity, bool>> specification)
         {
-            return GetQuery(specification, string.Empty).Count();
+            return GetQuery(specification).Count();
         }
 
         /// <summary>
@@ -156,22 +174,19 @@
             DeleteFromDbSet(entity);
         }
 
-        /// <summary>
-        /// Deletes the entity specified by the id.
-        /// </summary>
-        /// <param name="id">The entity id.</param>
-        public virtual void Delete(int id)
+        private IQueryable<TEntity> GetQuery(Expression<Func<TEntity, bool>> predicate)
         {
-            var entity = _dbSet.Find(id);
-            DeleteFromDbSet(entity);
+            return GetQuery<object>(predicate, null);
         }
 
-        private IQueryable<TEntity> GetQuery(Expression<Func<TEntity, bool>> predicate, string includeProperties)
+        private IQueryable<TEntity> GetQuery<TProperty>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TProperty>> includeProperty)
         {
             // Add the included properties
             var query = _dbSet.AsQueryable();
-            query = includeProperties.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries)
-                .Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
+            if (includeProperty != null)
+            {
+                query = query.Include(includeProperty);
+            }
 
             // Add the specification, when specified
             if (predicate != null)

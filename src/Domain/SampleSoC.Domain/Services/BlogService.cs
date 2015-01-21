@@ -26,8 +26,7 @@
         {
             return _unitOfWork.BlogPosts.Fetch(
                 bp => bp.DateCreated,
-                bp => bp.Id > 0, 
-                string.Empty);
+                bp => bp.Id > 0);
         }
 
         /// <summary>
@@ -63,8 +62,7 @@
         {
             return _unitOfWork.BlogComments.Fetch(
                 bc => bc.DateCreated,
-                bc => bc.BlogPostId == postId,
-                string.Empty);
+                bc => bc.BlogPostId == postId);
         }
     }
 }

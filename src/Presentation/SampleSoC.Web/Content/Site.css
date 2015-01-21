@@ -41,6 +41,18 @@ Blog Posts
     padding-bottom: 5px;
 }
 
+.BlogComments {
+    list-style-type: none;
+}
+
+    .BlogComments .Commenter {
+        font-weight: bold;
+    }
+
+    .BlogComments .Message {
+        font-style: italic;
+    }
+
 @media (min-width: 1400px) {
     .container {
         width: 1370px;

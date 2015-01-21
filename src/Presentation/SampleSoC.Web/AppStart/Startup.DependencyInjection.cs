@@ -20,12 +20,12 @@
         /// <param name="app"></param>
         public void SetupIoC(IAppBuilder app)
         {
-            IoC.Instance().Register<IUnitOfWork, UnitOfWork>().PerLifetimeScope();
-            IoC.Instance().Register<IBlogService, BlogService>().PerLifetimeScope();
+            IoC.Instance.Register<IUnitOfWork, UnitOfWork>().PerLifetimeScope();
+            IoC.Instance.Register<IBlogService, BlogService>().PerLifetimeScope();
 
-            IoC.Instance().RegisterMvc(GetType().Assembly);
+            IoC.Instance.RegisterMvc(GetType().Assembly);
 
-            IoC.Instance().Build();
+            IoC.Instance.Build();
 
             DependencyResolver.SetResolver(new IoCDependencyResolver());
 

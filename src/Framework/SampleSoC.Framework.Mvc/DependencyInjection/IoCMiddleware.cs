@@ -11,7 +11,7 @@
         /// <param name="app">The application.</param>
         public static void UseIoCMiddleware(this IAppBuilder app)
         {
-            app.UseAutofacMiddleware(IoC.Instance().Container);
+            app.UseAutofacMiddleware(IoC.Instance.Container);
             app.UseAutofacMvc();
         }
     }

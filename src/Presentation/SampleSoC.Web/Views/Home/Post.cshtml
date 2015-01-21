@@ -9,6 +9,13 @@
     <li>@Html.ActionLink("Edit", "Edit", "Home", new { Model.Id }, null)</li>
 }
 
+@section scripts{
+    <script type="text/javascript">
+        var blogPostViewModel = new BlogPostViewModel(@Model.Id, '@ViewBag.ServiceUrl');
+        ko.applyBindings(blogPostViewModel);
+    </script>
+}
+
 <div class="row">
     <div class="row">
         <span class="BlogPostHeader">@Model.Name</span>
@@ -18,6 +25,23 @@
     </div>
     <div class="row">
         @Html.Markdown(Model.Markdown)
+        <hr data-bind="visible: comments().length > 0"/>
+    </div>
+    <div class="row">
+        <ul class="BlogComments"
+            data-bind="foreach: comments">
+            <li>
+                <div class="Commenter"
+                     data-bind="text: Commenter"></div>
+                <div class="Message"
+                     data-bind="text: Message"></div>
+                <hr data-bind="visible: $index() != $parent.comments().length - 1"/>
+            </li>
+        </ul>
+        <button class="btn btn-default"
+                data-bind="visible: comments().length === 0, click: getComments">
+            Load comments
+        </button>
     </div>
 </div>
 

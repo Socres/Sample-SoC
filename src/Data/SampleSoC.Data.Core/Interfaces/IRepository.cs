@@ -21,8 +21,9 @@
         /// Gets the entity by id.
         /// </summary>
         /// <param name="id">The entity id.</param>
-        /// <param name="includeProperties">The include properties.</param>
-        T GetById(int id, string includeProperties);
+        /// <param name="includeProperty">The include property.</param>
+        /// <returns></returns>
+        T GetById<TProperty>(int id, Expression<Func<T, TProperty>> includeProperty);
 
         /// <summary>
         /// Gets the entities by specification.
@@ -40,10 +41,11 @@
         /// <summary>
         /// Gets the entities by specification.
         /// </summary>
+        /// <typeparam name="TProperty">The type of the property.</typeparam>
         /// <param name="specification">The specification.</param>
-        /// <param name="includeProperties">The include properties.</param>
+        /// <param name="includeProperty">The include property.</param>
         /// <returns></returns>
-        IEnumerable<T> Fetch(Expression<Func<T, bool>> specification, string includeProperties);
+        IEnumerable<T> Fetch<TProperty>(Expression<Func<T, bool>> specification, Expression<Func<T, TProperty>> includeProperty);
 
         /// <summary>
         /// Fetches the specified order by expression.
@@ -51,10 +53,21 @@
         /// <typeparam name="TOrderKey">The type of the order key.</typeparam>
         /// <param name="orderByExpression">The order by expression.</param>
         /// <param name="specification">The specification.</param>
-        /// <param name="includeProperties">The include properties.</param>
         /// <returns></returns>
         IEnumerable<T> Fetch<TOrderKey>(Expression<Func<T, TOrderKey>> orderByExpression,
-            Expression<Func<T, bool>> specification, string includeProperties);
+            Expression<Func<T, bool>> specification);
+
+        /// <summary>
+        /// Fetches the specified order by expression.
+        /// </summary>
+        /// <typeparam name="TOrderKey">The type of the order key.</typeparam>
+        /// <typeparam name="TProperty">The type of the property.</typeparam>
+        /// <param name="orderByExpression">The order by expression.</param>
+        /// <param name="specification">The specification.</param>
+        /// <param name="includeProperty">The include property.</param>
+        /// <returns></returns>
+        IEnumerable<T> Fetch<TOrderKey, TProperty>(Expression<Func<T, TOrderKey>> orderByExpression,
+            Expression<Func<T, bool>> specification, Expression<Func<T, TProperty>> includeProperty);
 
         /// <summary>
         /// Fetches entities by the specified specification.
@@ -86,12 +99,6 @@
         /// </summary>
         /// <param name="entity">The entity.</param>
         void Delete(T entity);
-
-        /// <summary>
-        /// Deletes the entity specified by the id.
-        /// </summary>
-        /// <param name="id">The entity id.</param>
-        void Delete(int id);
 
         /// <summary>
         /// Updates the specified entity.

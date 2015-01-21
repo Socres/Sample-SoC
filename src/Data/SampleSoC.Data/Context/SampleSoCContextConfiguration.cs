@@ -12,7 +12,6 @@
         {
             SetDefaultConnectionFactory(new SqlConnectionFactory());
             SetProviderServices("System.Data.SqlClient", System.Data.Entity.SqlServer.SqlProviderServices.Instance);
-            SetDatabaseInitializer(new NullDatabaseInitializer<SampleSoCContext>());
         }
     }
 }

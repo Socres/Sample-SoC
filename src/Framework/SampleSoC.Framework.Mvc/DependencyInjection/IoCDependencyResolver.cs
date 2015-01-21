@@ -17,8 +17,8 @@
         public object GetService(Type serviceType)
         {
             return 
-                IoC.Instance().IsRegistered(serviceType)
-                    ? IoC.Instance().Resolve(serviceType)
+                IoC.Instance.IsRegistered(serviceType)
+                    ? IoC.Instance.Resolve(serviceType)
                     : null;
         }
 
@@ -32,9 +32,9 @@
         public IEnumerable<object> GetServices(Type serviceType)
         {
             var enumerableServiceType = typeof(IEnumerable<>).MakeGenericType(serviceType);
-            if (IoC.Instance().IsRegistered(enumerableServiceType))
+            if (IoC.Instance.IsRegistered(enumerableServiceType))
             {
-                var instance = IoC.Instance().Resolve(enumerableServiceType);
+                var instance = IoC.Instance.Resolve(enumerableServiceType);
                 return (IEnumerable<object>) instance;
             }
             

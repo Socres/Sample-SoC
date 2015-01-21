@@ -1,6 +1,8 @@
 namespace SampleSoC.Data.Migrations
 {
     using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Data.Entity.Migrations;
     using System.Linq;
     using SampleSoC.Data.Context;
@@ -29,7 +31,7 @@ namespace SampleSoC.Data.Migrations
         private static BlogPost CreateBlogPost(DateTime startDate, int identifier)
         {
             var name = "Sample BlogPost " + identifier;
-            return new BlogPost
+            var blogPost = new BlogPost
             {
                 DateCreated = startDate.AddDays(identifier * -1),
                 Name = name,
@@ -48,6 +50,37 @@ namespace SampleSoC.Data.Migrations
                     "### Header 3" + Environment.NewLine + Environment.NewLine +
                     String.Join(Environment.NewLine, Enumerable.Repeat(LoremIpsum, 2))
             };
+
+            blogPost.BlogComments = CreateBlogComments(blogPost);
+
+            return blogPost;
+        }
+
+        private static ICollection<BlogComment> CreateBlogComments(BlogPost blogPost)
+        {
+            var comments = new Collection<BlogComment>
+            {
+                new BlogComment
+                {
+                    DateCreated = blogPost.DateCreated.AddMinutes(new Random().Next(15, 99999)),
+                    Commenter = "Anonymous",
+                    Message = "Great post!"
+                },
+                new BlogComment
+                {
+                    DateCreated = blogPost.DateCreated.AddMinutes(new Random().Next(15, 99999)),
+                    Commenter = "Anonymous",
+                    Message = "Awesome!"
+                },
+                new BlogComment
+                {
+                    DateCreated = blogPost.DateCreated.AddMinutes(new Random().Next(15, 99999)),
+                    Commenter = "Anonymous",
+                    Message = "Terrible! Ridiculous..nonsense.."
+                }
+            };
+
+            return comments;
         }
     }
 }

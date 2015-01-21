@@ -61,7 +61,7 @@
         private static void AddDefaultBundles(BundleCollection bundles, IEnumerable<string> scriptFiles)
         {
             var scriptFileList = scriptFiles.ToList();
-            
+
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                 "~/Scripts/modernizr-*"));
 
@@ -85,6 +85,7 @@
 
             bundles.Add(
                 new ScriptBundle("~/bundles/jsbootstrap")
+                    .Include("~/Scripts/" + GetFileName("knockout-", scriptFileList) + ".js")
                     .Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",

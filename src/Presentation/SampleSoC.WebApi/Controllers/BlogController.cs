@@ -1,9 +1,10 @@
 ﻿namespace SampleSoC.WebApi.Controllers
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Web.Http;
     using SampleSoC.Domain.Core.Interfaces;
-    using SampleSoC.Domain.Core.Models;
+    using SampleSoC.WebApi.Models;
 
     public class BlogController : ApiController
     {
@@ -21,11 +22,12 @@
         /// <summary>
         /// Gets this instance.
         /// </summary>
-        /// <param name="blogId">The blog identifier.</param>
+        /// <param name="id">The blog identifier.</param>
         /// <returns></returns>
-        public IEnumerable<BlogComment> Get(int blogId)
+        public IEnumerable<BlogCommentModel> Get(int id)
         {
-            return _blogService.GetComments(blogId);
+            return _blogService.GetComments(id)
+                .Select(bc => new BlogCommentModel(bc));
         }
     }
 }

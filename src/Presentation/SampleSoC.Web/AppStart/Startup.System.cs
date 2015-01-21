@@ -13,7 +13,7 @@
         /// </summary>
         public void InitializeSystem()
         {
-            var unitOfWork = IoC.Instance().Resolve<IUnitOfWork>();
+            var unitOfWork = IoC.Instance.Resolve<IUnitOfWork>();
             unitOfWork.Initialize();
         }
     }

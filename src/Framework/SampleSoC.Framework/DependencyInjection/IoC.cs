@@ -13,19 +13,19 @@
         internal IContainer Container;
 
         /// <summary>
+        /// Instances this instance.
+        /// </summary>
+        public static IoC Instance
+        {
+            get { return LazyIoC.Value; }
+        }
+
+        /// <summary>
         /// Prevents a default instance of the <see cref="IoC"/> class from being created.
         /// </summary>
         private IoC()
         {
             Builder = new ContainerBuilder();
-        }
-
-        /// <summary>
-        /// Instances this instance.
-        /// </summary>
-        public static IoC Instance()
-        {
-            return LazyIoC.Value;
         }
 
         /// <summary>

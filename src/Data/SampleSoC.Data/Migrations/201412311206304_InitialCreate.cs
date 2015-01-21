@@ -1,7 +1,8 @@
 namespace SampleSoC.Data.Migrations
 {
+    using System;
     using System.Data.Entity.Migrations;
-
+    
     public partial class InitialCreate : DbMigration
     {
         public override void Up()
@@ -12,6 +13,7 @@ namespace SampleSoC.Data.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         BlogPostId = c.Int(nullable: false),
+                        DateCreated = c.DateTime(nullable: false),
                         Commenter = c.String(nullable: false, maxLength: 150),
                         Message = c.String(nullable: false),
                     })
