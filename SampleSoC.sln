@@ -42,7 +42,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleSoC.Domain.Tests", "t
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleSoC.Web.Tests", "tests\SampleSoC.Web.Tests\SampleSoC.Web.Tests.csproj", "{90128662-A5F4-4A5A-8CB7-C4E441D6ABD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleSoC.WebApi.Tests", "SampleSoC.WebApi.Tests\SampleSoC.WebApi.Tests.csproj", "{DA3563E6-13E4-41EE-96F4-23B5639C7BFF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleSoC.WebApi.Tests", "tests\SampleSoC.WebApi.Tests\SampleSoC.WebApi.Tests.csproj", "{DA3563E6-13E4-41EE-96F4-23B5639C7BFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

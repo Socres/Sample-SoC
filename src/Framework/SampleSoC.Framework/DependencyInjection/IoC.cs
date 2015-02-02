@@ -43,7 +43,7 @@
         public IoCRegistrationBuilder<object> Register(Type implementationType)
         {
             var result = new IoCRegistrationBuilder<object>();
-            Builder.RegisterType(implementationType);
+            result.Register(Builder.RegisterType(implementationType));
             return result;
         }
 
