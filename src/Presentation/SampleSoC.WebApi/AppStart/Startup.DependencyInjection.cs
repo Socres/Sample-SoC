@@ -28,7 +28,7 @@
 
             IoC.Instance.Build();
 
-            //DependencyResolver.SetResolver(new IoCDependencyResolver());
+            config.DependencyResolver = new IoCDependencyResolver();
 
             app.UseIoCMiddleware(config);
         }
