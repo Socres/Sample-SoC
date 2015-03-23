@@ -32,9 +32,9 @@
             data-bind="foreach: comments">
             <li>
                 <div class="Commenter"
-                     data-bind="text: Commenter"></div>
+                     data-bind="text: commenter"></div>
                 <div class="Message"
-                     data-bind="text: Message"></div>
+                     data-bind="text: message"></div>
                 <hr data-bind="visible: $index() != $parent.comments().length - 1"/>
             </li>
         </ul>

@@ -23,6 +23,8 @@ namespace SampleSoC.WebApi.AppStart
 
             SetupRoutes(config);
 
+            SetupWebApiFormatters(config.Formatters);
+
             SetupIoC(app, config);
 
             InitializeSystem();
