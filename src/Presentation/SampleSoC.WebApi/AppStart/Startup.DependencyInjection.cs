@@ -2,10 +2,7 @@
 {
     using System.Web.Http;
     using Owin;
-    using SampleSoC.Data;
-    using SampleSoC.Data.Core.Interfaces;
-    using SampleSoC.Domain.Core.Interfaces;
-    using SampleSoC.Domain.Services;
+    using SampleSoC.DI;
     using SampleSoC.Framework.DependencyInjection;
     using SampleSoC.Framework.WebApi.DependencyInjection;
 
@@ -21,8 +18,8 @@
         /// <param name="config"></param>
         public void SetupIoC(IAppBuilder app, HttpConfiguration config)
         {
-            IoC.Instance.Register<IUnitOfWork, UnitOfWork>().PerLifetimeScope();
-            IoC.Instance.Register<IBlogService, BlogService>().PerLifetimeScope();
+            var ioCBuilder = new IoCBuilder();
+            ioCBuilder.Initialize(IoC.Instance);
 
             IoC.Instance.RegisterWebApi(GetType().Assembly);
 

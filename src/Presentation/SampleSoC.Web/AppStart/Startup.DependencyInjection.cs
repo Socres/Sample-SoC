@@ -2,10 +2,7 @@
 {
     using System.Web.Mvc;
     using Owin;
-    using SampleSoC.Data;
-    using SampleSoC.Data.Core.Interfaces;
-    using SampleSoC.Domain.Core.Interfaces;
-    using SampleSoC.Domain.Services;
+    using SampleSoC.DI;
     using SampleSoC.Framework.DependencyInjection;
     using SampleSoC.Framework.Mvc.DependencyInjection;
 
@@ -20,8 +17,8 @@
         /// <param name="app"></param>
         public void SetupIoC(IAppBuilder app)
         {
-            IoC.Instance.Register<IUnitOfWork, UnitOfWork>().PerLifetimeScope();
-            IoC.Instance.Register<IBlogService, BlogService>().PerLifetimeScope();
+            var ioCBuilder = new IoCBuilder();
+            ioCBuilder.Initialize(IoC.Instance);
 
             IoC.Instance.RegisterMvc(GetType().Assembly);
 

@@ -263,17 +263,9 @@
       <Project>{6A62D79F-5FC2-471F-8509-CD12BC827E12}</Project>
       <Name>SampleSoC.Data.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\SampleSoC.Data\SampleSoC.Data.csproj">
-      <Project>{47BCD33C-9F6B-4F7D-A90F-4D6E8BF28E9A}</Project>
-      <Name>SampleSoC.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Domain\SampleSoC.Domain.Core\SampleSoC.Domain.Core.csproj">
       <Project>{BCFB369F-E4A2-4D22-B27E-19CF3E83F107}</Project>
       <Name>SampleSoC.Domain.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Domain\SampleSoC.Domain\SampleSoC.Domain.csproj">
-      <Project>{85BBF747-7C51-4190-A26B-45EC8CE55455}</Project>
-      <Name>SampleSoC.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Framework\SampleSoC.Framework.Mvc\SampleSoC.Framework.Mvc.csproj">
       <Project>{60FBBEC6-C8B3-430F-8DDB-BECB9AE5E32A}</Project>
@@ -282,6 +274,10 @@
     <ProjectReference Include="..\..\Framework\SampleSoC.Framework\SampleSoC.Framework.csproj">
       <Project>{3E5E52BA-FB03-4655-88F1-B153F0F42C67}</Project>
       <Name>SampleSoC.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SampleSoC.DI\SampleSoC.DI.csproj">
+      <Project>{34704722-63D8-4A3D-9A38-E307FE6EB7E0}</Project>
+      <Name>SampleSoC.DI</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

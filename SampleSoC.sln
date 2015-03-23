@@ -44,6 +44,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleSoC.Web.Tests", "test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleSoC.WebApi.Tests", "tests\SampleSoC.WebApi.Tests\SampleSoC.WebApi.Tests.csproj", "{DA3563E6-13E4-41EE-96F4-23B5639C7BFF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleSoC.DI", "src\Presentation\SampleSoC.DI\SampleSoC.DI.csproj", "{34704722-63D8-4A3D-9A38-E307FE6EB7E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,6 +100,10 @@ Global
 		{DA3563E6-13E4-41EE-96F4-23B5639C7BFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA3563E6-13E4-41EE-96F4-23B5639C7BFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA3563E6-13E4-41EE-96F4-23B5639C7BFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34704722-63D8-4A3D-9A38-E307FE6EB7E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34704722-63D8-4A3D-9A38-E307FE6EB7E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34704722-63D8-4A3D-9A38-E307FE6EB7E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34704722-63D8-4A3D-9A38-E307FE6EB7E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -120,5 +126,6 @@ Global
 		{3617A337-FABB-4557-9072-F5F4FE632AEA} = {BAA6E9A1-2D85-41BF-AA43-1EB64AF76713}
 		{90128662-A5F4-4A5A-8CB7-C4E441D6ABD8} = {BAA6E9A1-2D85-41BF-AA43-1EB64AF76713}
 		{DA3563E6-13E4-41EE-96F4-23B5639C7BFF} = {BAA6E9A1-2D85-41BF-AA43-1EB64AF76713}
+		{34704722-63D8-4A3D-9A38-E307FE6EB7E0} = {F7F5CDB2-45BD-49E9-960C-4A95946B48B6}
 	EndGlobalSection
 EndGlobal
